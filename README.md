@@ -5,13 +5,13 @@
 El objetivo de este proyecto integrador final es validar los
 conocimientos prácticos y técnicos respecto al desarrollo de APIs en
 Java mediante Spring Boot para el curso **"Desarrollo de APIs en Java
-con Spring Boot"** de TodoCode Academy.
+con Spring Boot"**.
 
 ------------------------------------------------------------------------
 
 ## 📘 Escenario
 
-Un bazar ha incrementado en gran medida sus ventas. Debido a esto, y a
+Un buzar ha incrementado en gran medida sus ventas. Debido a esto, y a
 que ya no pueden registrar y manejar el stock de forma manual, necesitan
 una aplicación que les permita realizar esta tarea.
 
