@@ -264,3 +264,6 @@ http://localhost:8080/ventas/fecha/2025-01-15
 **Visualizar con Swagger**
 
 http://localhost:8080/swagger-ui/index.html
+
+
+![Captura de pantalla de mostrarDatos.jsp](imagen.JPG)
