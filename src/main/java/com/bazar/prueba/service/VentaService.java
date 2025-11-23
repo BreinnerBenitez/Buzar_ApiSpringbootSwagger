@@ -1,5 +1,6 @@
 package com.bazar.prueba.service;
 
+import com.bazar.prueba.dto.ClienteDTO;
 import com.bazar.prueba.dto.ResumenVentasDTO;
 import com.bazar.prueba.dto.VentaMayorDTO;
 import com.bazar.prueba.model.Producto;
@@ -68,8 +69,10 @@ public class VentaService implements IVentaService {
 
         List<Venta> ventas = ventaRepository.findByfechaVenta(fechaVenta);
         ResumenVentasDTO objetoResumenVentas = new ResumenVentasDTO();
+
         double montoTotal = 0.0;
         long cantidadVentas = 0;
+
 
         for (Venta v : ventas) {
 

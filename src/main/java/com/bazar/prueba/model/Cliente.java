@@ -1,7 +1,11 @@
 package com.bazar.prueba.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "cliente") // nombre de la entidad en la base de datos
 public class Cliente {
@@ -19,38 +23,6 @@ public class Cliente {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.dni = dni;
-    }
-
-    public Long getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(Long id_cliente) {
-        this.id_cliente = id_cliente;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
         this.dni = dni;
     }
 
