@@ -1,5 +1,6 @@
 package com.bazar.prueba.controller;
 
+import com.bazar.prueba.dto.ClienteDTO;
 import com.bazar.prueba.model.Cliente;
 import com.bazar.prueba.service.IClienteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,7 @@ public class ClienteController {
     )
     // LISTAR TODOS
     @GetMapping("/clientes")
-    public List<Cliente> traerClientes() {
+    public List<ClienteDTO> traerClientes() {
         return clienteService.getClientes();
     }
 
