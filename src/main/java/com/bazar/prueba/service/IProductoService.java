@@ -1,5 +1,6 @@
 package com.bazar.prueba.service;
 
+import com.bazar.prueba.dto.ProductoDTO;
 import com.bazar.prueba.model.Producto;
 
 import java.util.List;
@@ -24,5 +25,5 @@ public interface IProductoService {
     public void editMascota(Long idOriginal, Long idNueva, String nuevoNombre, String nuevaMarca,
                             Double nuevoCosto, Double cantidad_disponible);
 
-    public List<Producto> getProductoCantidad5();
+    public List<ProductoDTO> getProductoCantidad5();
 }

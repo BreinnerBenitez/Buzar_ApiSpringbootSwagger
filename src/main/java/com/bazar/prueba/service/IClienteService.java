@@ -1,5 +1,6 @@
 package com.bazar.prueba.service;
 
+import com.bazar.prueba.dto.ClienteDTO;
 import com.bazar.prueba.model.Cliente;
 
 import java.util.List;
@@ -8,7 +9,7 @@ public interface IClienteService {
 
     //método para traer a todas las personas
     //lectura
-    public List<Cliente> getClientes();
+    public List<ClienteDTO> getClientes();
 
     //crear
     public void saveCliente(Cliente Cliente);

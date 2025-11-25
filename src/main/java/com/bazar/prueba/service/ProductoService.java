@@ -1,5 +1,6 @@
 package com.bazar.prueba.service;
 
+import com.bazar.prueba.dto.ProductoDTO;
 import com.bazar.prueba.model.Producto;
 import com.bazar.prueba.repository.IProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,20 +54,20 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public List<Producto> getProductoCantidad5() {
+    public List<ProductoDTO> getProductoCantidad5() {
 
         List<Producto> listaproductos = this.getProductos();
-        List<Producto> listaproductos5 = new ArrayList<>();
-        Producto pro = new Producto();
+        List<ProductoDTO> listaproductos5 = new ArrayList<>();
+        ProductoDTO proDTO = new ProductoDTO();
         for (Producto p : listaproductos) {
             if (p.getCantidad_disponible() < 5) {
-                pro.setCodigo_producto(p.getCodigo_producto());
-                pro.setNombre(p.getNombre());
-                pro.setCantidad_disponible(p.getCantidad_disponible());
-                pro.setCosto(p.getCosto());
+                proDTO.setCodigo_producto(p.getCodigo_producto());
+                proDTO.setNombre(p.getNombre());
+                proDTO.setCantidad_disponible(p.getCantidad_disponible());
+                proDTO.setCosto(p.getCosto());
 
-                listaproductos5.add(pro);
-                pro = new Producto(); //reseteo
+                listaproductos5.add(proDTO);
+                proDTO = new ProductoDTO(); //reseteo
             }
         }
 

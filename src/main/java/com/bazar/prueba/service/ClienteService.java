@@ -1,10 +1,12 @@
 package com.bazar.prueba.service;
 
+import com.bazar.prueba.dto.ClienteDTO;
 import com.bazar.prueba.model.Cliente;
 import com.bazar.prueba.repository.IClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ClienteService implements IClienteService {
@@ -13,9 +15,21 @@ public class ClienteService implements IClienteService {
    private IClienteRepository repoRepository;
 
     @Override
-    public List<Cliente> getClientes() { //Traer todos los clientes
+    public List<ClienteDTO> getClientes() { //Traer todos los clientes
         List<Cliente> listaCliente = repoRepository.findAll();
-        return listaCliente;
+        List<ClienteDTO> listaClienteDto =  new ArrayList<>(); // lista de clientes dto
+           ClienteDTO cliDTO = new ClienteDTO();
+
+            for (Cliente cli : listaCliente){
+
+                  cliDTO.setNombre(cli.getNombre());   // paso de la entidad al DTO
+                  cliDTO.setApellido(cli.getApellido());
+                  cliDTO.setDni(cli.getApellido());
+            }
+                     listaClienteDto.add(cliDTO);
+                      cliDTO = new ClienteDTO(); //reinicio el objeto
+
+        return listaClienteDto;
     }
 
     @Override
