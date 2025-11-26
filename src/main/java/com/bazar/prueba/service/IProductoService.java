@@ -9,7 +9,8 @@ public interface IProductoService {
 
     //método para traer a todas las personas
     //lectura
-    public List<Producto> getProductos();
+    public List<ProductoDTO> getProductos();
+    public List<Producto> getProductosInterno();
 
     //crear
     public void saveProducto(Producto Producto);

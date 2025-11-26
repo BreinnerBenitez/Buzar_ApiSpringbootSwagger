@@ -18,7 +18,7 @@ public interface IClienteService {
     public void deleteCliente(Long id);
 
     //buscar
-    public Cliente findCliente(Long id);
+    public ClienteDTO findCliente(Long id);
 
     //edición/modificación
     public void editCliente (Long id_cliente ,Cliente Cliente);

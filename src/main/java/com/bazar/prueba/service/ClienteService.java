@@ -43,9 +43,14 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public Cliente findCliente(Long id) {
+    public ClienteDTO findCliente(Long id) {
+      Cliente cli =  repoRepository.findById(id).orElse(null);
+        ClienteDTO cliDTO = new ClienteDTO();
+         cliDTO.setDni(cli.getDni());
+         cliDTO.setNombre(cli.getNombre());
+         cliDTO.setApellido(cli.getApellido());
 
-        return repoRepository.findById(id).orElse(null);
+        return cliDTO;
     }
 
     @Override

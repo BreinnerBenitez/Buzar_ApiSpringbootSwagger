@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @Tag(name = "Clientes", description = "CRUD completo de clientes")
+@RequestMapping("/clientes")
 public class ClienteController {
     @Autowired
     private IClienteService clienteService;
@@ -22,7 +23,7 @@ public class ClienteController {
             summary = "Crear un nuevo cliente",
             description = "Registra un nuevo cliente en el sistema"
     )
-    @PostMapping("/clientes/crear")
+    @PostMapping("/crear")
     public String crearCliente(@RequestBody Cliente cli) {
         clienteService.saveCliente(cli);
         return "Cliente creado correctamente";
@@ -33,7 +34,7 @@ public class ClienteController {
             description = "Muestra la lista completa de clientes registrados"
     )
     // LISTAR TODOS
-    @GetMapping("/clientes")
+    @GetMapping
     public List<ClienteDTO> traerClientes() {
         return clienteService.getClientes();
     }
@@ -43,8 +44,8 @@ public class ClienteController {
             summary = "Obtener un cliente por ID",
             description = "Devuelve la información del cliente solicitado"
     )
-    @GetMapping("/clientes/{id_cliente}")
-    public Cliente traerCliente(
+    @GetMapping("/{id_cliente}")
+    public ClienteDTO traerCliente(
             @Parameter(description = "ID del cliente a buscar")
             @PathVariable Long id_cliente
 
@@ -57,7 +58,7 @@ public class ClienteController {
             summary = "Eliminar un cliente",
             description = "Elimina un cliente según su ID"
     )
-    @DeleteMapping("/clientes/eliminar/{id_cliente}")
+    @DeleteMapping("/eliminar/{id_cliente}")
     public String eliminarCliente(
             @Parameter(description = "ID del cliente a eliminar")
             @PathVariable Long id_cliente) {
@@ -70,7 +71,7 @@ public class ClienteController {
             summary = "Editar un cliente",
             description = "Actualiza los datos de un cliente existente"
     )
-    @PutMapping("/clientes/editar/{id_cliente}")
+    @PutMapping("/editar/{id_cliente}")
     public String editarCliente(
             @Parameter(description = "ID del cliente a editar")
             @PathVariable Long id_cliente,

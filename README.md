@@ -4,8 +4,7 @@
 
 El objetivo de este proyecto integrador final es validar los
 conocimientos prácticos y técnicos respecto al desarrollo de APIs en
-Java mediante Spring Boot para el curso **"Desarrollo de APIs en Java
-con Spring Boot"**.
+Java mediante Spring Boot.
 
 ------------------------------------------------------------------------
 

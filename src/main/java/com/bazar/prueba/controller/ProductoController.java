@@ -1,5 +1,6 @@
 package com.bazar.prueba.controller;
 
+import com.bazar.prueba.dto.ProductoDTO;
 import com.bazar.prueba.model.Producto;
 import com.bazar.prueba.service.IProductoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,7 +35,7 @@ public class ProductoController {
             description = "Muestra la lista completa de los productos  registrados"
     )
     @GetMapping("/productos")
-    public List traerProductos() {
+    public List<ProductoDTO> traerProductos() {
 
         return productoService.getProductos();
     }

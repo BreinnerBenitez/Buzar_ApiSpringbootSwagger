@@ -17,9 +17,30 @@ public class ProductoService implements IProductoService {
 
 
     @Override
-    public List<Producto> getProductos() {  // trae la lista de productos
+    public List<ProductoDTO> getProductos() { // trae la lista de productos
         List<Producto> listaProductos = repoRepository.findAll();
-        return listaProductos;
+        List<ProductoDTO> listaProductoDTO = new ArrayList<>();
+        ProductoDTO proDTO = new ProductoDTO();
+
+        for (Producto p : listaProductos) {
+
+            proDTO.setCantidad_disponible(p.getCantidad_disponible());
+            proDTO.setNombre(p.getNombre());
+            proDTO.setMarca(p.getMarca());
+            proDTO.setCosto(p.getCosto());
+
+        }
+        listaProductoDTO.add(proDTO);
+        proDTO = new ProductoDTO(); // reincia el objeto
+        return listaProductoDTO;
+    }
+
+    @Override
+    public List<Producto> getProductosInterno() {  // trae la lista de productos para los metodos internos
+        List<Producto> listaProductos = repoRepository.findAll();
+
+
+        return listaProductos; // falta a comodar esto
     }
 
     @Override
@@ -41,7 +62,7 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public void editProducto(Long codigo_producto,Producto producto) {
+    public void editProducto(Long codigo_producto, Producto producto) {
         producto.setCodigo_producto(codigo_producto);
         this.saveProducto(producto);
 
@@ -56,7 +77,7 @@ public class ProductoService implements IProductoService {
     @Override
     public List<ProductoDTO> getProductoCantidad5() {
 
-        List<Producto> listaproductos = this.getProductos();
+        List<Producto> listaproductos = this.getProductosInterno();
         List<ProductoDTO> listaproductos5 = new ArrayList<>();
         ProductoDTO proDTO = new ProductoDTO();
         for (Producto p : listaproductos) {
