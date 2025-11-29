@@ -19,7 +19,7 @@ public interface IProductoService {
     public void deleteProducto(Long id);
 
     //buscar
-    public Producto findProducto(Long id);
+    public ProductoDTO findProducto(Long id);
 
     //edición/modificación
     public void editProducto (Long codigo_producto,Producto Producto);

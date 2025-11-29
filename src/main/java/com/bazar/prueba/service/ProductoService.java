@@ -54,9 +54,16 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public Producto findProducto(Long id) {  // buscar producto
+    public ProductoDTO findProducto(Long id) {  // buscar producto
+        Producto pro = repoRepository.findById(id).orElse(null);
+        ProductoDTO proDTO = new ProductoDTO();
+        proDTO.setNombre(pro.getNombre());
+        proDTO.setCosto(pro.getCosto());
+        proDTO.setCantidad_disponible(pro.getCantidad_disponible());
+        proDTO.setMarca(pro.getMarca());
 
-        return repoRepository.findById(id).orElse(null);
+
+        return proDTO;
 
 
     }

@@ -46,7 +46,7 @@ public class ProductoController {
     )
 
     @GetMapping("/productos/{codigo_producto}")
-    public Producto traerProductos(
+    public ProductoDTO traerProductos(
             @Parameter(description = "codigo del producto  a eliminar")
             @PathVariable Long codigo_producto) { // trae el producto con el codigo del producto
 
