@@ -1,6 +1,7 @@
 package com.bazar.prueba.service;
 
 import com.bazar.prueba.dto.ResumenVentasDTO;
+import com.bazar.prueba.dto.VentaDTO;
 import com.bazar.prueba.dto.VentaMayorDTO;
 import com.bazar.prueba.model.Producto;
 import com.bazar.prueba.model.Venta;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface IVentaService  {
     //método para traer a todas las personas
     //lectura
-    public List<Venta> getVentas();
+    public List<VentaDTO> getVentas();
 
     //crear
     public void saveVenta(Venta Venta);
@@ -22,7 +23,8 @@ public interface IVentaService  {
     public void deleteVenta(Long id);
 
     //buscar
-    public Venta findVenta(Long id);
+    public Venta findVentaInterna(Long id);
+    public VentaDTO findVenta(Long id);
 
     //edición/modificación
     public void editVenta ( Long codigo_venta, Venta Venta);

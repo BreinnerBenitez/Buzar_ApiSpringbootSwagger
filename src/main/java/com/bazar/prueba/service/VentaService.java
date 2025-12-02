@@ -2,6 +2,7 @@ package com.bazar.prueba.service;
 
 import com.bazar.prueba.dto.ClienteDTO;
 import com.bazar.prueba.dto.ResumenVentasDTO;
+import com.bazar.prueba.dto.VentaDTO;
 import com.bazar.prueba.dto.VentaMayorDTO;
 import com.bazar.prueba.model.Producto;
 import com.bazar.prueba.model.Venta;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,10 +21,20 @@ public class VentaService implements IVentaService {
     private IVentaRepository ventaRepository;
 
     @Override
-    public List<Venta> getVentas() {
+    public List<VentaDTO> getVentas() {
 
         List<Venta> listaVentas = ventaRepository.findAll();
-        return listaVentas;
+        List<VentaDTO> listaVentasDto = new ArrayList<>();
+        VentaDTO venDTO = new VentaDTO();
+
+        for (Venta v : listaVentas) {
+            venDTO.setFechaVenta(v.getFechaVenta());
+            venDTO.setTotal(v.getTotal());
+
+
+        }
+        venDTO = new VentaDTO();  //reiniciar objeto
+        return listaVentasDto;
     }
 
     @Override
@@ -36,13 +48,25 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public Venta findVenta(Long id) {
+    public Venta findVentaInterna(Long id) { // buscar objetos internos
+
         return ventaRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void editVenta(  Long codigo_venta, Venta venta) {
-            venta.setCodigo_venta(codigo_venta);
+    public VentaDTO findVenta(Long id) {
+        Venta ven = ventaRepository.findById(id).orElse(null);
+        VentaDTO venDTO = new VentaDTO();
+        venDTO.setFechaVenta(ven.getFechaVenta());
+        venDTO.setTotal(ven.getTotal());
+
+        return venDTO;
+    }
+
+
+    @Override
+    public void editVenta(Long codigo_venta, Venta venta) {
+        venta.setCodigo_venta(codigo_venta);
         this.saveVenta(venta);
 
     }
@@ -55,7 +79,7 @@ public class VentaService implements IVentaService {
     @Override
     public List<Producto> obtenerProductosDeVenta(Long codigoVenta) {
 
-        Venta venta = this.findVenta(codigoVenta);
+        Venta venta = this.findVentaInterna(codigoVenta);
 
         if (venta == null) {
             return null;  // null
@@ -93,7 +117,7 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public VentaMayorDTO ventaMayor() {
+    public VentaMayorDTO ventaMayor() { // trae la venta mayor
 
         Venta ventaMayor = ventaRepository.findTopByOrderByTotalDesc();
         if (ventaMayor == null) {

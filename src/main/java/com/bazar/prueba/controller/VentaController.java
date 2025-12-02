@@ -1,6 +1,7 @@
 package com.bazar.prueba.controller;
 
 import com.bazar.prueba.dto.ResumenVentasDTO;
+import com.bazar.prueba.dto.VentaDTO;
 import com.bazar.prueba.dto.VentaMayorDTO;
 import com.bazar.prueba.model.Producto;
 import com.bazar.prueba.model.Venta;
@@ -36,13 +37,13 @@ public class VentaController {
             summary = "Listar todos las Ventas",
             description = "Muestra la lista completa de las Ventas  registrados")
     @GetMapping("/ventas")
-    public List<Venta> traerVentas() {
+    public List<VentaDTO> traerVentas() {
         return ventaService.getVentas();
     }
 
     // TRAER UNA POR CÓDIGO
     @GetMapping("/ventas/{codigo_venta}")
-    public Venta traerVenta(
+    public VentaDTO traerVenta(
             @Parameter(description = "codigo de la venta a traer")
             @PathVariable Long codigo_venta) {
         return ventaService.findVenta(codigo_venta);
