@@ -29,9 +29,11 @@ public class ProductoService implements IProductoService {
             proDTO.setMarca(p.getMarca());
             proDTO.setCosto(p.getCosto());
 
+            listaProductoDTO.add(proDTO);
+            proDTO = new ProductoDTO(); // reincia el objeto
         }
-        listaProductoDTO.add(proDTO);
-        proDTO = new ProductoDTO(); // reincia el objeto
+
+
         return listaProductoDTO;
     }
 

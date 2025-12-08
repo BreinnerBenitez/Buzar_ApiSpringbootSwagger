@@ -1,5 +1,6 @@
 package com.bazar.prueba.controller;
 
+import com.bazar.prueba.dto.ProductoDTO;
 import com.bazar.prueba.dto.ResumenVentasDTO;
 import com.bazar.prueba.dto.VentaDTO;
 import com.bazar.prueba.dto.VentaMayorDTO;
@@ -77,9 +78,9 @@ public class VentaController {
 
     @Operation(
             summary = "trae los prodcuto de la venta",
-            description = "con el codigo de la venta tra los productos relacionados a la venta")
+            description = "con el codigo de la venta trae los productos relacionados a la venta")
     @GetMapping("/ventas/productos/{codigo_venta}") // obtener productos de venta
-    public List<Producto> obtenerProductosPorVenta(
+    public List<ProductoDTO> obtenerProductosPorVenta(
             @Parameter(description = "codigo de venta ")
             @PathVariable Long codigo_venta) {
 

@@ -1,5 +1,6 @@
 package com.bazar.prueba.service;
 
+import com.bazar.prueba.dto.ProductoDTO;
 import com.bazar.prueba.dto.ResumenVentasDTO;
 import com.bazar.prueba.dto.VentaDTO;
 import com.bazar.prueba.dto.VentaMayorDTO;
@@ -30,7 +31,7 @@ public interface IVentaService  {
     public void editVenta ( Long codigo_venta, Venta Venta);
     public void editMascota(Long idOriginal, Long idNueva, LocalDate fecha_venta, Double total);
 
-    public List<Producto> obtenerProductosDeVenta(Long codigoVenta); // obtener productos por ventas
+    public List<ProductoDTO> obtenerProductosDeVenta(Long codigoVenta); // obtener productos por ventas
     public ResumenVentasDTO obtenerResumenPorFecha(LocalDate fechaVenta); // obtener resumen de fecha
     public VentaMayorDTO ventaMayor();
 

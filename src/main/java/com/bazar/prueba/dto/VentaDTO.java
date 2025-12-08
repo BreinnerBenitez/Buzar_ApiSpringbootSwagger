@@ -18,7 +18,7 @@ public class VentaDTO {
     private Long codigo_venta;
     private LocalDate fechaVenta;
     private Double total;
-    List<Producto> listaProductos;
+    private List<Producto> listaProductos;
     private Cliente unCliente;
 
     @Override

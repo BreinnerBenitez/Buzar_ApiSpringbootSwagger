@@ -1,9 +1,6 @@
 package com.bazar.prueba.service;
 
-import com.bazar.prueba.dto.ClienteDTO;
-import com.bazar.prueba.dto.ResumenVentasDTO;
-import com.bazar.prueba.dto.VentaDTO;
-import com.bazar.prueba.dto.VentaMayorDTO;
+import com.bazar.prueba.dto.*;
 import com.bazar.prueba.model.Producto;
 import com.bazar.prueba.model.Venta;
 import com.bazar.prueba.repository.IVentaRepository;
@@ -77,15 +74,25 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public List<Producto> obtenerProductosDeVenta(Long codigoVenta) {
+    public List<ProductoDTO> obtenerProductosDeVenta(Long codigoVenta) {
 
         Venta venta = this.findVentaInterna(codigoVenta);
-
+        List<ProductoDTO> listaVentaProductoDTO = new ArrayList<>();
+        ProductoDTO proDTO = new ProductoDTO();
         if (venta == null) {
             return null;  // null
         }
 
-        return venta.getListaProductos(); // lista de prodductos
+        for (Producto p : venta.getListaProductos()) {
+            proDTO.setMarca(p.getMarca());
+            proDTO.setCosto(p.getCosto());
+            proDTO.setNombre(p.getNombre());
+            listaVentaProductoDTO.add(proDTO);
+            proDTO = new ProductoDTO(); //reseteo de objeto
+        }
+
+
+        return listaVentaProductoDTO;  // lista de productos en DTO
     }
 
     @Override
