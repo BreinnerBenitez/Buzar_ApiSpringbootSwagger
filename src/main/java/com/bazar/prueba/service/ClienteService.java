@@ -51,7 +51,7 @@ public class ClienteService implements IClienteService {
         cliDTO.setDni(cli.getDni());
         cliDTO.setNombre(cli.getNombre());
         cliDTO.setApellido(cli.getApellido());
-
+        cliDTO.setId_cliente(cli.getId_cliente());
         return cliDTO;
     }
 
