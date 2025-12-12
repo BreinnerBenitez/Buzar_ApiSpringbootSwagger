@@ -9,20 +9,20 @@ public interface IClienteService {
 
     //método para traer a todas las personas
     //lectura
-    public List<ClienteDTO> getClientes();
+     List<ClienteDTO> getClientes();
 
     //crear
-    public void saveCliente(Cliente Cliente);
+     void saveCliente(Cliente Cliente);
 
     //eliminar
-    public void deleteCliente(Long id);
+     void deleteCliente(Long id);
 
     //buscar
-    public ClienteDTO findCliente(Long id);
+     ClienteDTO findCliente(Long id);
 
     //edición/modificación
-    public void editCliente (Long id_cliente ,Cliente Cliente);
-    public void editMascota(Long idOriginal, Long idNueva, String nuevoNombre, String Apellido,
+     void editCliente (Long id_cliente ,Cliente Cliente);
+     void editMascota(Long idOriginal, Long idNueva, String nuevoNombre, String Apellido,
                           String dni);
 
 

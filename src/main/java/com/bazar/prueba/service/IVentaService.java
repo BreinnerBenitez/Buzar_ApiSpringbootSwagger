@@ -15,24 +15,24 @@ import java.util.List;
 public interface IVentaService  {
     //método para traer a todas las personas
     //lectura
-    public List<VentaDTO> getVentas();
+     List<VentaDTO> getVentas();
 
     //crear
-    public void saveVenta(Venta Venta);
+     void saveVenta(Venta Venta);
 
     //eliminar
-    public void deleteVenta(Long id);
+     void deleteVenta(Long id);
 
     //buscar
-    public Venta findVentaInterna(Long id);
-    public VentaDTO findVenta(Long id);
+     Venta findVentaInterna(Long id);
+     VentaDTO findVenta(Long id);
 
     //edición/modificación
-    public void editVenta ( Long codigo_venta, Venta Venta);
-    public void editMascota(Long idOriginal, Long idNueva, LocalDate fecha_venta, Double total);
+     void editVenta ( Long codigo_venta, Venta Venta);
+     void editMascota(Long idOriginal, Long idNueva, LocalDate fecha_venta, Double total);
 
-    public List<ProductoDTO> obtenerProductosDeVenta(Long codigoVenta); // obtener productos por ventas
-    public ResumenVentasDTO obtenerResumenPorFecha(LocalDate fechaVenta); // obtener resumen de fecha
-    public VentaMayorDTO ventaMayor();
+     List<ProductoDTO> obtenerProductosDeVenta(Long codigoVenta); // obtener productos por ventas
+     ResumenVentasDTO obtenerResumenPorFecha(LocalDate fechaVenta); // obtener resumen de fecha
+     VentaMayorDTO ventaMayor();
 
 }

@@ -9,22 +9,22 @@ public interface IProductoService {
 
     //método para traer a todas las personas
     //lectura
-    public List<ProductoDTO> getProductos();
-    public List<Producto> getProductosInterno();
+     List<ProductoDTO> getProductos();
+     List<Producto> getProductosInterno();
 
     //crear
-    public void saveProducto(Producto Producto);
+     void saveProducto(Producto Producto);
 
     //eliminar
-    public void deleteProducto(Long id);
+     void deleteProducto(Long id);
 
     //buscar
-    public ProductoDTO findProducto(Long id);
+     ProductoDTO findProducto(Long id);
 
     //edición/modificación
-    public void editProducto (Long codigo_producto,Producto Producto);
-    public void editMascota(Long idOriginal, Long idNueva, String nuevoNombre, String nuevaMarca,
+     void editProducto (Long codigo_producto,Producto Producto);
+     void editMascota(Long idOriginal, Long idNueva, String nuevoNombre, String nuevaMarca,
                             Double nuevoCosto, Double cantidad_disponible);
 
-    public List<ProductoDTO> getProductoCantidad5();
+     List<ProductoDTO> getProductoCantidad5();
 }

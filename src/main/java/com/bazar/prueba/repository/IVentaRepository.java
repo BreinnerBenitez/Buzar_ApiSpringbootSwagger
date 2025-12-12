@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface IVentaRepository extends JpaRepository<Venta,Long> {
+ public interface IVentaRepository extends JpaRepository<Venta,Long> {
     List<Venta> findByfechaVenta(LocalDate fecha_venta);
     Venta findTopByOrderByTotalDesc();
 }

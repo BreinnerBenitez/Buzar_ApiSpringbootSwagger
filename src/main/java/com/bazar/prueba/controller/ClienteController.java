@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,9 @@ public class ClienteController {
             description = "Registra un nuevo cliente en el sistema"
     )
     @PostMapping("/crear")
-    public String crearCliente(@RequestBody Cliente cli) {
+    public ResponseEntity<String> crearCliente(@RequestBody Cliente cli) {
         clienteService.saveCliente(cli);
-        return "Cliente creado correctamente";
+        return  ResponseEntity.status(HttpStatus.CREATED).body("cliente creado con exito");
     }
 
     @Operation(
@@ -35,8 +37,8 @@ public class ClienteController {
     )
     // LISTAR TODOS
     @GetMapping
-    public List<ClienteDTO> traerClientes() {
-        return clienteService.getClientes();
+    public   ResponseEntity<List<ClienteDTO>> traerClientes() {
+        return ResponseEntity.ok(clienteService.getClientes());
     }
 
     // TRAER UNO POR ID
