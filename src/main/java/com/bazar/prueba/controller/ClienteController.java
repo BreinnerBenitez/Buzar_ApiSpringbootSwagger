@@ -26,7 +26,7 @@ public class ClienteController {
             description = "Registra un nuevo cliente en el sistema"
     )
     @PostMapping("/crear")
-    public ResponseEntity<String> crearCliente(@RequestBody Cliente cli) {
+    public ResponseEntity<?> crearCliente(@RequestBody Cliente cli) {
         clienteService.saveCliente(cli);
         return  ResponseEntity.status(HttpStatus.CREATED).body("cliente creado con exito");
     }
@@ -47,12 +47,12 @@ public class ClienteController {
             description = "Devuelve la información del cliente solicitado"
     )
     @GetMapping("/{id_cliente}")
-    public ClienteDTO traerCliente(
+    public ResponseEntity <ClienteDTO> traerCliente(
             @Parameter(description = "ID del cliente a buscar")
             @PathVariable Long id_cliente
 
     ) {
-        return clienteService.findCliente(id_cliente);
+        return  ResponseEntity.status(HttpStatus.OK).body(clienteService.findCliente(id_cliente));
     }
 
     // ELIMINAR
@@ -61,11 +61,11 @@ public class ClienteController {
             description = "Elimina un cliente según su ID"
     )
     @DeleteMapping("/eliminar/{id_cliente}")
-    public String eliminarCliente(
+    public ResponseEntity<String> eliminarCliente(
             @Parameter(description = "ID del cliente a eliminar")
             @PathVariable Long id_cliente) {
         clienteService.deleteCliente(id_cliente);
-        return "Cliente eliminado correctamente";
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).body("cliente eliminado correctamente "+id_cliente);
     }
 
     // EDITAR
@@ -74,14 +74,14 @@ public class ClienteController {
             description = "Actualiza los datos de un cliente existente"
     )
     @PutMapping("/editar/{id_cliente}")
-    public String editarCliente(
+    public ResponseEntity<?>  editarCliente(
             @Parameter(description = "ID del cliente a editar")
             @PathVariable Long id_cliente,
             @RequestBody Cliente cli) {
 
 
         clienteService.editCliente(id_cliente, cli);
-        return "Cliente editado correctamente";
+        return  ResponseEntity.ok ("cliente editado correctamente");
     }
 
 }
