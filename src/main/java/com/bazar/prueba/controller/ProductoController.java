@@ -7,6 +7,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +26,11 @@ public class ProductoController {
             description = "Registra un nuevo producto en el sistema"
     )
     @PostMapping("/productos/crear")
-    public String createProducto(@RequestBody Producto pro) {
+    public ResponseEntity<?> createProducto(@RequestBody Producto pro) {
 
         productoService.saveProducto(pro);
 
-        return "productos registrados correctamente";
+        return ResponseEntity.status(HttpStatus.CREATED).body("Producto creado con exito");
     }
 
     @Operation(
@@ -35,9 +38,9 @@ public class ProductoController {
             description = "Muestra la lista completa de los productos  registrados"
     )
     @GetMapping("/productos")
-    public List<ProductoDTO> traerProductos() {
+    public  ResponseEntity<List<ProductoDTO>> traerProductos() {
 
-        return productoService.getProductos();
+        return   ResponseEntity.ok(productoService.getProductos());
     }
 
     @Operation(
@@ -46,11 +49,11 @@ public class ProductoController {
     )
 
     @GetMapping("/productos/{codigo_producto}")
-    public ProductoDTO traerProductos(
+    public ResponseEntity <ProductoDTO> traerProductos(
             @Parameter(description = "codigo del producto  a eliminar")
             @PathVariable Long codigo_producto) { // trae el producto con el codigo del producto
 
-        return productoService.findProducto(codigo_producto);
+        return  ResponseEntity.ok(productoService.findProducto(codigo_producto));
     }
 
     @Operation(
@@ -59,13 +62,13 @@ public class ProductoController {
     )
 
     @DeleteMapping("/productos/eliminar/{codigo_producto}")  // borra el producto
-    public String deleteProducto(
+    public ResponseEntity<?> deleteProducto(
             @Parameter(description = "codigo del producto a eliminar")
             @PathVariable Long codigo_producto) {
 
         productoService.deleteProducto(codigo_producto);
 
-        return "el producto fue borrado correctamente";
+        return  ResponseEntity.noContent().build();
     }
 
     @Operation(
@@ -73,13 +76,13 @@ public class ProductoController {
             description = "Edita  el  producto  registrado  por id"
     )
     @PutMapping("/productos/editar/{codigo_producto}")
-    public String editProducto(
+    public  ResponseEntity <?> editProducto(
             @Parameter(description = "codigo del producto  a editar")
             @PathVariable Long codigo_producto, @RequestBody Producto pro) { // editar producto
 
         productoService.editProducto(codigo_producto, pro);
 
-        return "editar producto";
+        return  ResponseEntity.noContent().build();
     }
 
     @Operation(
@@ -87,8 +90,8 @@ public class ProductoController {
             description = "Trae los productos  con canitdad menor de 5"
     )
     @GetMapping("/productos/falta_stock") // punto 4
-    public List traerCanitdad5() {
+    public  ResponseEntity  <List> traerCanitdad5() {
 
-        return productoService.getProductoCantidad5();
+        return ResponseEntity.ok(productoService.getProductoCantidad5());
     }
 }

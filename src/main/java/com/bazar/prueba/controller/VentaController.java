@@ -10,7 +10,10 @@ import com.bazar.prueba.service.IVentaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -28,9 +31,9 @@ public class VentaController {
             summary = "Agregar ventas ",
             description = "Agrega la venta  registrada")
     @PostMapping("/ventas/crear")
-    public String crearVenta(@RequestBody Venta ven) {
+    public ResponseEntity <?> crearVenta(@RequestBody Venta ven) {
         ventaService.saveVenta(ven);
-        return "Venta registrada correctamente";
+        return   ResponseEntity.status(HttpStatus.CREATED).body("Venta registrada correctamente");
     }
 
     // LISTAR TODAS
@@ -38,16 +41,16 @@ public class VentaController {
             summary = "Listar todos las Ventas",
             description = "Muestra la lista completa de las Ventas  registrados")
     @GetMapping("/ventas")
-    public List<VentaDTO> traerVentas() {
-        return ventaService.getVentas();
+    public  ResponseEntity <List<VentaDTO>> traerVentas() {
+        return ResponseEntity.ok(ventaService.getVentas());
     }
 
     // TRAER UNA POR CÓDIGO
     @GetMapping("/ventas/{codigo_venta}")
-    public VentaDTO traerVenta(
+    public ResponseEntity <VentaDTO> traerVenta(
             @Parameter(description = "codigo de la venta a traer")
             @PathVariable Long codigo_venta) {
-        return ventaService.findVenta(codigo_venta);
+        return  ResponseEntity.ok(ventaService.findVenta(codigo_venta));
     }
 
     @Operation(
@@ -55,11 +58,11 @@ public class VentaController {
             description = "Elimina una  Ventaa  registrada")
     // ELIMINAR
     @DeleteMapping("/ventas/eliminar/{codigo_venta}")
-    public String eliminarVenta(
+    public  ResponseEntity <?> eliminarVenta(
             @Parameter(description = "codigo de la venta a eliminar")
             @PathVariable Long codigo_venta) {
         ventaService.deleteVenta(codigo_venta);
-        return "Venta eliminada correctamente";
+        return ResponseEntity.noContent().build();
     }
 
     // EDITAR
@@ -67,43 +70,43 @@ public class VentaController {
             summary = "Editar venta",
             description = "Edita las ventas")
     @PutMapping("/ventas/editar/{codigo_venta}")
-    public String editarVenta(
+    public ResponseEntity<?> editarVenta(
             @Parameter(description = "codigo de la venta a editar")
             @PathVariable Long codigo_venta,
             @RequestBody Venta ven) {
 
         ventaService.editVenta(codigo_venta, ven);
-        return "Venta editada correctamente";
+        return  ResponseEntity.noContent().build();
     }
 
     @Operation(
             summary = "trae los prodcuto de la venta",
             description = "con el codigo de la venta trae los productos relacionados a la venta")
     @GetMapping("/ventas/productos/{codigo_venta}") // obtener productos de venta
-    public List<ProductoDTO> obtenerProductosPorVenta(
+    public  ResponseEntity  <List<ProductoDTO>> obtenerProductosPorVenta(
             @Parameter(description = "codigo de venta ")
             @PathVariable Long codigo_venta) {
 
-        return ventaService.obtenerProductosDeVenta(codigo_venta);
+        return  ResponseEntity.ok(ventaService.obtenerProductosDeVenta(codigo_venta));
     }
 
     @Operation(
             summary = "venta por fecha",
             description = " Obtienes venta por fecha todo el monto y cantidad de ventas")
     @GetMapping("/ventas/fecha/{fechaVenta}")  // venta por fecha todo el monto y cantidad de ventas
-    public ResumenVentasDTO obtenerMontoVenta(
+    public  ResponseEntity <ResumenVentasDTO> obtenerMontoVenta(
             @Parameter(description = "fecha a buscar")
             @PathVariable LocalDate fechaVenta) {
 
-        return ventaService.obtenerResumenPorFecha(fechaVenta);
+        return  ResponseEntity.ok(ventaService.obtenerResumenPorFecha(fechaVenta));
     }
 
     @Operation(
             summary = "venta mayor",
             description = " obtener la venta mayor ")
     @GetMapping("/ventas/mayor_venta")
-    public VentaMayorDTO getVentaMayor() {
-        return ventaService.ventaMayor();
+    public  ResponseEntity <VentaMayorDTO> getVentaMayor() {
+        return  ResponseEntity.ok( ventaService.ventaMayor());
     }
 
 

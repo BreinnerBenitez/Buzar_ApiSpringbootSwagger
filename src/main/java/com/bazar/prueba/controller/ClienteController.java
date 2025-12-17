@@ -61,11 +61,11 @@ public class ClienteController {
             description = "Elimina un cliente según su ID"
     )
     @DeleteMapping("/eliminar/{id_cliente}")
-    public ResponseEntity<String> eliminarCliente(
+    public ResponseEntity<?> eliminarCliente(
             @Parameter(description = "ID del cliente a eliminar")
             @PathVariable Long id_cliente) {
         clienteService.deleteCliente(id_cliente);
-        return  ResponseEntity.status(HttpStatus.NO_CONTENT).body("cliente eliminado correctamente "+id_cliente);
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     // EDITAR
@@ -81,7 +81,7 @@ public class ClienteController {
 
 
         clienteService.editCliente(id_cliente, cli);
-        return  ResponseEntity.ok ("cliente editado correctamente");
+        return  ResponseEntity.noContent().build();
     }
 
 }
